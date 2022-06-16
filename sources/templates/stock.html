@@ -1,0 +1,49 @@
+{% extends templates/elements/layout.html %}
+{% extends templates/elements/head.html %}
+{% extends templates/elements/navbar-top.html %}
+{% extends templates/elements/footer.html %}
+
+{% block title %}Notre Stock{% endblock %}
+
+{% block content %}
+        <header id="head" class="secondary"></header>
+        <div class="container">
+          <br/>
+          <br/>
+          Nous ne garantissons pas la disponibilité des éléments.<br/>
+          Nous nous réservons la possibilité d'annuler une commande jusqu'au paiment.<br/>
+          Nous limitons le nombre d'éléments d'une même catégorie à 2 par entité (particulier ou association).<br/>
+          Si vous avez de plus grandes ambitions pour votre projet, n'hésite pas à nous contacter sur contact[@]teamrecup.fr<br/>
+          <div class="col-md-2 sidebar sidebar-left">
+            <h2 class="thin text-center">Catégories</h2>
+            {% foreach($list_categories as $elem): %}
+            <h4 class="thin"><a href="stock.php?categorie_id={{ $elem['id'] }}">{{ $elem['name'] }}</a></h4>
+            {% endforeach %}
+          </div>
+          <div class="col-md-10 maincontent">
+            <h2 class="thin text-center">{% foreach($list_categories as $elem): %}{% if ($elem['highlight'] == True){ echo $elem['name'];} %}{% endforeach %}</h2>
+            <table class="table table-striped">
+              <thead class="thead-light">
+                <tr>
+                  <th class="align-middle fit" scope="col">Titre</th>
+                  <th scope="col">Description</th>
+                  <th scope="align-middle col">Disponibilité</th>
+                  <th scope="align-middle col">Prix</th>
+                  <th class="align-middle fit" scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% foreach($list_product as $elem): %}
+                <tr>
+                  <th class="align-middle fit" scope="row">{{ $elem['title'] }}</th>
+                  <td>{{ $elem['desc'] }}</td>
+                  <td class="align-middle">{{ $elem['quantity'] }}</td>
+                  <td class="align-middle">{{ $elem['cost'] }} €</td>
+                  <td class="align-middle fit"><a href="./stock.php?categorie_id={{ $categorie_id }}&add=True&id={{ $elem['id'] }}&type={{ $elem['type'] }}">{% if ($panier_resum[$elem['type']] < 2){ echo 'Ajouter'; } %}</a></td>
+                </tr>
+                {% endforeach %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends templates/elements/layout.html %}
+{% extends templates/elements/head.html %}
+{% extends templates/elements/navbar-top.html %}
+{% extends templates/elements/footer.html %}
+
+{% block title %}Panier{% endblock %}
+
+{% block content %}
+<header id="head" class="secondary"></header>
+<div class="container">
+    <h2 class="thin text-center">Panier {% echo count($_SESSION['panier']) %} élément(s)</h2>
+    <table class="table table-striped">
+        <thead class="thead-light">
+          <tr>
+            <th class="align-middle fit" scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="align-middle col">Quantité</th>
+            <th scope="align-middle col">Prix Unitaire</th>
+            <th scope="align-middle col">Prix Total</th>
+            <th class="align-middle fit" scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% foreach($list as $elem): %}
+          <tr>
+            <th class="align-middle fit" scope="row">{{ $elem['title'] }}</th>
+            <td>{{ $elem['desc'] }}</td>
+            <td class="align-middle">{{ $elem['quantity'] }}</td>
+            <td class="align-middle">{{ $elem['unit_cost'] }} €</td>
+            <td class="align-middle">{{ $elem['total_cost'] }} €</td>
+            <td class="align-middle fit"><a href="./panier.php?remove=True&id={{ $elem['id'] }}">Supprimer</a></td>
+          </tr>
+          {% endforeach %}
+        </tbody>
+      </table>
+      <h2 class="thin text-center">Total de la demande {{ $total_cost }} € hors customisations</h2>
+      <div class="col-md-6 sidebar sidebar-left">
+        <form action="submit.php" method="post">
+          <div class="form-group">
+            <label for="email">Email address :</label>
+            <input type="email" name="email" class="form-control" id="email" aria-describedby="Ton Email" placeholder="Ton email">
+            <small id="email" class="form-text text-muted">L'adresse email ou nous pouvons te recontacter</small>
+          </div>
+          <div class="form-group">
+            <label for="custom">Customisation :</label>
+            <textarea class="form-control" name="custom" id="custom" rows="3"></textarea>
+            <small id="custom" class="form-text text-muted">Si tu veut ajouter de la ram, des cartes PCI à ton serveur ou des informations, c'est ici ! </small>
+          </div>
+          <div class="form-group">
+            <label for="project">Projet :</label>
+            <textarea class="form-control" id="project" name="project" rows="3"></textarea>
+            <small id="project" class="form-text text-muted">Dis-nous quel seront tes projets avec ce/ces équipements</small>
+          </div>
+          <button type="submit" class="btn btn-primary" >Submit</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <h4 class="thin" >Tarif des Customisations</h4>
+        <p>
+          Les tarifs ci-dessous sont a ajouter aux prix affiché à la fin du panier en fonction de ta customisation.
+        </p>
+        <p>
+          - Barrette DDR3 4Go de ram = 2 €<br/>
+          - Barrette DDR3 8Go de ram = 5 €<br/>
+          - Barrette DDR3 16Go de ram = 10 €<br/>
+          - Barrette DDR3 32Go de ram = 30 €<br/>
+          <br/>
+          - Barrette DDR4 4Go de ram = 4 €<br />
+          - Barrette DDR4 8Go de ram = 9 €<br />
+          - Barrette DDR4 16Go de ram = 18 €<br />
+          - Barrette DDR4 32Go de ram = 40 €<br />
+        </p>
+        <h4 class="thin" >Informations importantes</h4>
+        <p>
+          Nous ne garantissons pas la disponibilité des éléments.<br/>
+          Nous nous réservons la possibilité d'annuler une commande jusqu'au paiement.<br/>
+          Nous limitons le nombre d'éléments d'une même catégorie à 2 par entité (particulier ou association).<br/>
+	  Si vous avez de plus grandes ambitions pour votre projet, n'hésite pas à nous contacter sur contact[@]teamrecup.fr<br/>
+        </p>
+      </div>
+</div>
+{% endblock %}

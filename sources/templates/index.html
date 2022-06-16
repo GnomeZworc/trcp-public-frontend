@@ -1,0 +1,92 @@
+{% extends templates/elements/layout.html %}
+{% extends templates/elements/head.html %}
+{% extends templates/elements/navbar-top.html %}
+{% extends templates/elements/footer.html %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+        <header id="head">
+            <div class="container">
+                <div class="row">
+                    <h1 class="lead">#TeamRecup</h1>
+                    <p class="tagline">
+		        Récupération et redistribution de matériel informatique<br />
+                        Un projet fondé par AtaxyaNetwork</p>
+                    <p>
+                        <a href="faq.php" class="btn btn-default btn-lg" role="button">Nos valeurs</a> <a href="stock.php" class="btn btn-action btn-lg" role="button">Notre Stock</a>
+                    </p>
+                        <div class="col-sm-4"></div>
+                        <form class="col-sm-4" action="submit.php" method="post">
+                            <div class="form-group">
+                                <label for="uuid">Suivi de commande : </label>
+                                <input type="uuid" name="uuid" class="form-control" id="uuid" aria-describedby="Votre numero de suivi" placeholder="Votre numero de suivi">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm">Vérifier ma commande</button>
+                        </form>
+                        <div class="col-sm-4"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Intro -->
+        <div class="container text-center">
+            <br/>
+            <br/>
+            <h2 class="thin">#TeamRecup, une association au service de la communauté</h2>
+                <p class="text-muted">
+                Nous récupérons du matériel informatique décommisionnés auprès d'entreprises, pour les redistribuer aux associations et particuliers pour leurs projets. <br>
+            </p>
+        </div>
+        <!-- /Intro-->
+
+        <!-- Highlights - jumbotron -->
+        <div class="jumbotron top-space">
+            <div class="container">
+                <h3 class="text-center thin">Nos valeurs</h3>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 highlight">
+                        <div class="h-caption">
+                            <h4><i class="fa fa-recycle fa-5"></i>On recycle</h4>
+                        </div>
+                        <div class="h-body text-center">
+                            <p>
+                                Le matériel informatique est récupéré auprès des entreprises qui nous contacte pour redonner une seconde vie aux équipement destiné à l'origine à la déchetterie
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 highlight">
+                        <div class="h-caption">
+                            <h4><i class="fa fa-wrench fa-5"></i>Remise en état</h4>
+                        </div>
+                        <div class="h-body text-center">
+                            <p>
+                                Une fois le matériel récupéré et inventorié, notre équipe se charge de les remettre en état pour préparer les serveurs et autres équipements à la redistribution
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 highlight">
+                        <div class="h-caption">
+                            <h4><i class="fa fa-refresh fa-5"></i>Redistribution</h4>
+                        </div>
+                        <div class="h-body text-center">
+                            <p>
+			        Une fois le matériel prêt à repartir, ils sont alors mis directement en ligne sur le site <a herf="./stock.php">web</a> et vous pouvez alors les réserver !
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 highlight">
+                        <div class="h-caption">
+                            <h4><i class="fa fa-smile-o fa-5"></i>A vous de jouer !</h4>
+                        </div>
+                        <div class="h-body text-center">
+                            <p>
+                                En tant que particulier ou association, vous pouvez bénéficier de nos récupérations. Nous sommes heureux de pouvoir vous aider dans vos projet et votre formation informatique !
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Highlights -->
+{% endblock %}

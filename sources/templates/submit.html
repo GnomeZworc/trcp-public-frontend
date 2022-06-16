@@ -1,0 +1,53 @@
+{% extends templates/elements/layout.html %}
+{% extends templates/elements/head.html %}
+{% extends templates/elements/navbar-top.html %}
+{% extends templates/elements/footer.html %}
+
+{% block title %}Submit{% endblock %}
+
+{% block content %}
+<header id="head" class="secondary"></header>
+<div class="container">
+    <h2 class="thin text-center">Votre commande</h2>
+    Votre id de commande est le "<b>{{ $uuid }}</b>", il vous permettra de consulter votre panier et de voir l'avancement de votre réservation.<br/>
+    Le status de votre commande est "<b>{{ $status }}</b>", le tarif indique est susceptible d'etre modifie suite a l'ajout de vos options et demande.<br/>
+    {% if ($status != 'refuse') { %}
+    <p>
+        <h4 class="thin">Customisation :</h4>
+        {{ $custom }}
+    </p>
+    <p>
+        <h4 class="thin">Projet :</h4>
+        {{ $project }}
+    </p>
+    <table class="table table-striped">
+        <thead class="thead-light">
+          <tr>
+            <th class="align-middle fit" scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="align-middle col">Quantité</th>
+            <th scope="align-middle col">Prix Unitaire</th>
+            <th scope="align-middle col">Prix Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% foreach($list as $elem): %}
+          <tr>
+            <th class="align-middle fit" scope="row">{{ $elem['title'] }}</th>
+            <td>{{ $elem['desc'] }}</td>
+            <td class="align-middle">{{ $elem['quantity'] }}</td>
+            <td class="align-middle">{{ $elem['unit_cost'] }} €</td>
+            <td class="align-middle">{{ $elem['total_cost'] }} €</td>
+          </tr>
+          {% endforeach %}
+        </tbody>
+      </table>
+      <h2 class="thin text-center">Coût {{ $cost }} euros</h2>
+      {% } else { %}
+      <p>
+        <h4 class="thin">Raison du rejet :</h4>
+        {{ $why }}
+    </p>
+      {% } %}
+</div>
+{% endblock %}

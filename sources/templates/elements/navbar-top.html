@@ -1,0 +1,21 @@
+{% block navbar-top %}
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top headroom" >
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Button for smallest screens -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand" href="index.php"><img src="assets/images/team-recup-60.png" alt="Progressus HTML5 template"></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav pull-right">
+                        <li {% if ($page == 'index.php'){ echo 'class="active"';} %}><a href="index.php">Home</a></li>
+                        <li {% if ($page == 'faq.php'){ echo 'class="active"';} %}><a href="faq.php">FAQ</a></li>
+                        <li {% if ($page == 'stock.php'){ echo 'class="active"';} %}><a href="stock.php">Stock</a></li>
+                        <li {% if ($page == 'panier.php'){ echo 'class="active"';} %}><a href="panier.php">Panier ({% echo count($_SESSION['panier']) %})</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div> 
+        <!-- /.navbar -->
+{% endblock %}
