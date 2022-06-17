@@ -10,3 +10,7 @@ You should prepend your commit by a subjet:
  - `db:`
  - `templates:`
  - `git:`
+
+## Contributors file
+
+A contributors files is available, do not hesitate to add yourself in it.
