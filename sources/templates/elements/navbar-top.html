@@ -9,7 +9,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav pull-right">
-                        <li {% if ($page == 'index.php'){ echo 'class="active"';} %}><a href="index.php">Home</a></li>
+                        <li {% if ($page == 'index.php'){ echo 'class="active"';} %}><a href="index.php">Accueil</a></li>
                         <li {% if ($page == 'faq.php'){ echo 'class="active"';} %}><a href="faq.php">FAQ</a></li>
                         <li {% if ($page == 'stock.php'){ echo 'class="active"';} %}><a href="stock.php">Stock</a></li>
                         <li {% if ($page == 'panier.php'){ echo 'class="active"';} %}><a href="panier.php">Panier ({% echo count($_SESSION['panier']) %})</a></li>
