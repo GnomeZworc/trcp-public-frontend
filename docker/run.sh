@@ -6,6 +6,9 @@ docker pull nginx:1.20.2-alpine
 echo -e "\n## pull php"
 docker build docker -t php
 
+echo -e "\n## pull postgres"
+docker pull postgres:11.16-alpine3.16
+
 echo
 NAME=${1}
 DIR=${2}
@@ -36,3 +39,18 @@ docker run -d --name nginx \
   nginx:1.20.2-alpine > ${DOCKER}/log/nginx.log 2>${DOCKER}/log/nginx.log \
   && echo "Docker nginx is running" \
   || echo "Docker nginx had an error"
+
+docker run -d --name postgres \
+  --net ${NAME} \
+  -e POSTGRES_HOST_AUTH_METHOD=trust \
+  -p "0.0.0.0:5432:5432" \
+  postgres:11.16-alpine3.16 > ${DOCKER}/log/postgres.log 2>${DOCKER}/log/postgres.log \
+  && echo "Docker postgres is running" \
+  || echo "Docker postgres had an error"
+
+sleep 5
+
+echo "CREATE DATABASE trcp" | docker exec -i -u postgres postgres psql
+cat ./docker/database.sql | docker exec -i -u postgres postgres psql trcp
+chmod 777 sources/cache \
+  && echo "Change cache right"

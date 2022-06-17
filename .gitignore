@@ -1,1 +1,2 @@
-docker/log/*.log
+docker/log
+sources/cache
