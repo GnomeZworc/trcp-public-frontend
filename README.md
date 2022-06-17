@@ -1,4 +1,4 @@
-# TEARMRECUP public frontend
+# TEAMRECUP public frontend
 
 ## Version
 
