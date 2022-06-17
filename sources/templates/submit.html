@@ -3,14 +3,14 @@
 {% extends templates/elements/navbar-top.html %}
 {% extends templates/elements/footer.html %}
 
-{% block title %}Submit{% endblock %}
+{% block title %}Ta Commande{% endblock %}
 
 {% block content %}
 <header id="head" class="secondary"></header>
 <div class="container">
-    <h2 class="thin text-center">Votre commande</h2>
-    Votre id de commande est le "<b>{{ $uuid }}</b>", il vous permettra de consulter votre panier et de voir l'avancement de votre réservation.<br/>
-    Le status de votre commande est "<b>{{ $status }}</b>", le tarif indique est susceptible d'etre modifie suite a l'ajout de vos options et demande.<br/>
+    <h2 class="thin text-center">Ta commande</h2>
+    Ton ID de commande est le "<b>{{ $uuid }}</b>", il te permettra de consulter ton panier et de voir l'avancement de ta réservation.<br/>
+    Le status de ta commande est "<b>{{ $status }}</b>", le tarif indiqué est susceptible d'être modifié suite à l'ajout de tes options et demandes.<br/>
     {% if ($status != 'refuse') { %}
     <p>
         <h4 class="thin">Customisation :</h4>
@@ -42,7 +42,7 @@
           {% endforeach %}
         </tbody>
       </table>
-      <h2 class="thin text-center">Coût {{ $cost }} euros</h2>
+      <h4 class="thin text-center">Coût : {{ $cost }} euros</h4>
       {% } else { %}
       <p>
         <h4 class="thin">Raison du rejet :</h4>
