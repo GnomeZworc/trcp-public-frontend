@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 echo -e "\n## pull nginx"
 docker pull nginx:1.20.2-alpine
