@@ -1,9 +1,9 @@
 <?php
 
-$db_host = 'bn242304-001.eu.clouddb.ovh.net';
-$db_port = '35615';
+$db_host = 'postgres';
+$db_port = '5432';
 $db_database = 'trcp';
-$db_user = 'trcp';
-$db_password = 'btu33RT5TmKhuRj';
+$db_user = 'postgres';
+$db_password = '';
 
 ?>
