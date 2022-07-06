@@ -1,7 +1,7 @@
 <?php
-include 'sessions.php';
-include 'template.php';
-include 'databases.php';
+include './includes/sessions.php';
+include './includes/template.php';
+include './includes/databases.php';
 
 $dbconn = pg_connect("host=".$db_host." port=".$db_port." dbname=".$db_database." user=".$db_user." password=".$db_password)
     or die('Connexion impossible : ' . pg_last_error());
