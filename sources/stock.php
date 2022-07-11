@@ -20,8 +20,9 @@ $dbconn = pg_connect("host=".$db_host." port=".$db_port." dbname=".$db_database.
 /* add server in basket */
 $elems = array();
 if (isset($_GET['add']) && $panier_resum[$_GET['type']] < 2){
-    $element_query = 'SELECT count(*) AS rows FROM basket_element WHERE product_id = '.$_GET['id'];
-    $product_query = 'SELECT quantity AS rows, cost FROM product WHERE id = '.$_GET['id'];
+    $id = intval($_GET['id']);
+    $element_query = 'SELECT count(*) AS rows FROM basket_element WHERE product_id = '.$id;
+    $product_query = 'SELECT quantity AS rows, cost FROM product WHERE id = '.$id;
     $element_result = pg_query($element_query) or die('Échec de la requête : ' . pg_last_error());
     $product_result = pg_query($product_query) or die('Échec de la requête : ' . pg_last_error());
     $element_count = pg_fetch_assoc($element_result)['rows'];
@@ -30,7 +31,7 @@ if (isset($_GET['add']) && $panier_resum[$_GET['type']] < 2){
     pg_free_result($element_result);
     if ($element_count < $product_count){
         $myuuid = guidv4();
-        $query = 'INSERT INTO basket_element(uuid, product_id, cost) VALUES(\''.$myuuid.'\', '.$_GET['id'].', '.$product['cost'].')';
+        $query = 'INSERT INTO basket_element(uuid, product_id, cost) VALUES(\''.$myuuid.'\', '.$id.', '.$product['cost'].')';
         pg_query($query) or die('Échec de la requête : ' . pg_last_error());
         $elems['id'] = $_GET['id'];
         $elems['type'] = $_GET['type'];
