@@ -2,7 +2,7 @@
 
 ## Version
 
-v1.2
+v1.2.1
 
 ## Why
 
