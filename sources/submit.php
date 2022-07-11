@@ -13,6 +13,11 @@ if (isset($_POST['email']) && isset($_POST['custom']) && isset($_POST['project']
     $uuid = guidv4();
     $custom = pg_escape_string($_POST['custom']);
     $project = pg_escape_string($_POST['project']);
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        $url = "https://teamrecup.fr/stock.php";
+        header("Location: ".$url);
+        die();
+    }
     $query = 'INSERT INTO basket(uuid, email, custom, project) VALUES(\''.$uuid.'\', \''.$_POST['email'].'\', \''.$custom.'\', \''.$project.'\')';
     pg_query($query) or die('Échec de la requête : ' . pg_last_error());
     $query = 'SELECT id FROM basket WHERE uuid = \''.$uuid.'\'';
@@ -28,6 +33,12 @@ if (isset($_POST['email']) && isset($_POST['custom']) && isset($_POST['project']
 } else if (isset($_GET['uuid'])){
     $uuid = $_GET['uuid'];
 } else {
+    $url = "https://teamrecup.fr/stock.php";
+    header("Location: ".$url);
+    die();
+}
+
+if ((preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/', $uuid) !== 1)) {
     $url = "https://teamrecup.fr/stock.php";
     header("Location: ".$url);
     die();
