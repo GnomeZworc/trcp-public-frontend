@@ -29,9 +29,9 @@ if (isset($_POST['email']) && isset($_POST['custom']) && isset($_POST['project']
     }
     session_destroy();
 } else if (isset($_POST['uuid'])) {
-    $uuid = $_POST['uuid'];
+    $uuid = trim($_POST['uuid']);
 } else if (isset($_GET['uuid'])){
-    $uuid = $_GET['uuid'];
+    $uuid = trim($_GET['uuid']);
 } else {
     $url = "https://teamrecup.fr/stock.php";
     header("Location: ".$url);
